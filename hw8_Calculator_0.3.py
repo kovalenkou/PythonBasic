@@ -5,42 +5,46 @@ input_msg = 'Please, choose the type of the operation.\nInput \"+\" or \"-\" or 
 If you want to sum more than two intagers please choose \"+++\" operation type.\n'
 operation_type = input(input_msg)
 result = None
-# check the alloved type of operations (Type \"s\" as start to continue)
+# Check the alloved type of operations (Type \"s\" as start to continue)
 if  operation_type in ('+','-','*','/'):
-    num1 = int(input('Please, input the first integer\n'))
-    num2 = int(input('Please, input the second integer\n'))
-    if  operation_type == '+':
-        result = num1 + num2
-        print('Result is: {0} + {1} = {2}'.format(num1, num2, result))
-    elif operation_type == '-':
-        result = num1 - num2
-        print('Result is: {0} - {1} = {2}'.format(num1, num2, result))
-    elif operation_type == '*':
-        result = num1 * num2
-        print('Result is: {0} * {1} = {2}'.format(num1, num2, result))
-    elif operation_type == '/':
-        if num2 == 0:
-            print('Incorect: division by zero')
-        else:
-            result = num1 / num2
-            print('Result is: {0} / {1} = {2}'.format(num1, num2, result))
+    try:
+        num1 = int(input('Please, input the first integer\n'))
+        num2 = int(input('Please, input the second integer\n'))
+        if  operation_type == '+':
+            result = num1 + num2
+        elif operation_type == '-':
+            result = num1 - num2
+        elif operation_type == '*':
+            result = num1 * num2
+        elif operation_type == '/':
+            try:
+                result = round(num1/num2, 2)
+            except ZeroDivisionError as err:
+                print('Incorect input: Result is ♾ !', err)
+ #          finally:
+ #              print('The end!')
+        print('Result is: {1} {0} {2} = {3}'.format(operation_type, num1, num2, result))
+    except ValueError as err:
+        print('Incorect input: only integers allowed.', err)
+#sum more than two integers
 elif operation_type == '+++':
     next = True
     result = 0
-    print('Please, input an integer to sum or Enter to start operation')
+    print('Please, input an integers to sum or Enter to start operation')
     while next:
-        num = input()
-        if num != '':
-            result += int(num)
-        elif num == '':
-            next = False
-        else:
-            print('Incorect input')
+        try:
+            num = input()
+            if num != '':
+                result += int(num)
+            elif num == '':
+                next = False
+            else:
+                print('Incorect input')
+        except ValueError as err:
+            print('Incorect input: only integers allowed.', err)
     else:
         print('Total sum:', result)
 else:
     print('Incorect input the type of the operation!')
-# calculate the result
-
-
+#End of operating
 print('Done!')
