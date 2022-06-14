@@ -12,24 +12,21 @@ parser.add_argument('--gray', action='store_true', help='Creates files with blac
 args = parser.parse_args()
 out_dir = Path(args.out_dir)
 out_dir.mkdir(exist_ok=True)
+
 if out_dir == Path('.'):
     print(f"Hi! This is the cat maker v_0.1.\nNow you will get {args.amount} cat image files in current directory.")
 else:
     print(f"Hi! This is the cat maker v_0.1.\nNow you will get {args.amount} cat image files in '{out_dir}' directory.")
 
+gray_color = 'black-white ' if args.gray else ''
+base = 'http://placekitten.com/g' if args.gray else 'http://placekitten.com'
+
 for i in range(0, args.amount):
     out_file = Path.joinpath(out_dir, f'img{i + 1}.jpeg')
 
-    base = 'http://placekitten.com'
     width = randint(100, 1000)
     height = randint(100, 1000)
-
-    gray_color = ''
-    if args.gray:
-        url = f'{base}/g/{width}/{height}'
-        gray_color = 'black-white '
-    else:
-        url = f'{base}/{width}/{height}'
+    url = f'{base}/{width}/{height}'
 
     print(f'Creating {gray_color}cat number {i + 1} with size {width}*{height}')
 
