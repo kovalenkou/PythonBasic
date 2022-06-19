@@ -4,7 +4,7 @@ def perfect_cucumber():
     p_cucumber = input('You can type right now: ')
 
     # 3. Чи нема зайвих пробілів у тексті
-    assert p_cucumber.replace(' ', '') == p_cucumber, 'Good \'Cucumber\' have not the space characters!'
+    assert ' ' not in p_cucumber, 'Good \'Cucumber\' have not the space characters!'
     assert p_cucumber.isalpha(), 'Good \'Cucumber\' have only alphabets characters!'
 
     # 2. Чи всі літери, окрім першої, маленькі
