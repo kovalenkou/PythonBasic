@@ -7,14 +7,14 @@ from pathlib import Path
 
 input_dir = Path('./input_files')
 input_dir.mkdir(exist_ok=True)
-print(f'For start reading please copy JSON-file \'people_db.json\' to this directory: {input_dir.absolute()}')
+print(f'For start reading please copy JSON-file "people_db.json" to this directory: {input_dir.absolute()}')
 
 output_dir = Path('./output_files')
 output_dir.mkdir(exist_ok=True)
 print(f'Your CSV-file will be created into directory: {input_dir.absolute()}')
 
 time.sleep(15)
-next_step = input('To continue press \'Y\': ')
+next_step = input('To continue press "Y": ')
 if next_step.upper() == 'Y':
     print('Starts the process of reading JSON-file and writing CSV-file')
 
@@ -34,11 +34,8 @@ if next_step.upper() == 'Y':
                     count += 1
                     people_data.append(people)
 
-        # field names
-        # fields = ['first_name', 'last_name', 'email_address', 'company_name', 'job_title', 'phone']
-        fields = []
-        for key in people_data[0]:
-            fields.append(key)
+        # field names ['first_name', 'last_name', 'email_address', 'company_name', 'job_title', 'phone']
+        fields = list(people_data[0].keys())
 
         # writing to csv file
         with open(csv_output_file, 'w', newline='') as csv_file:
@@ -49,7 +46,7 @@ if next_step.upper() == 'Y':
         print(f'{count} items were written to CSV-file')
 
     else:
-        print(f'{json_input_file} doesn\'t exists')
+        print(f"{json_input_file} doesn't exists")
 else:
     print('Refusal to read the file')
 
