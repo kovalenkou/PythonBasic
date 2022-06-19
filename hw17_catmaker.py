@@ -1,8 +1,8 @@
 # homework 17 - Cat maker
 import argparse
+import requests
 from pathlib import Path
 from random import randint
-import requests
 
 parser = argparse.ArgumentParser(description='Process to save some cats.')
 parser.add_argument('amount', type=int, help='Integers that show the amount of created files')
@@ -13,10 +13,8 @@ args = parser.parse_args()
 out_dir = Path(args.out_dir)
 out_dir.mkdir(exist_ok=True)
 
-if out_dir == Path('.'):
-    print(f"Hi! This is the cat maker v_0.1.\nNow you will get {args.amount} cat image files in current directory.")
-else:
-    print(f"Hi! This is the cat maker v_0.1.\nNow you will get {args.amount} cat image files in '{out_dir}' directory.")
+msg_dir = out_dir if out_dir != Path('.') else 'current'
+print(f"Hi! This is the cat maker v_0.1.\nNow you will get {args.amount} cat image files in {msg_dir} directory.")
 
 gray_color = 'black-white ' if args.gray else ''
 base = 'http://placekitten.com/g' if args.gray else 'http://placekitten.com'
