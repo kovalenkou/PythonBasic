@@ -1,6 +1,7 @@
-import requests
 import time
 from concurrent.futures import ThreadPoolExecutor
+
+import requests
 
 
 def crack_the_safe(password):
